@@ -11,10 +11,10 @@ public class Star extends Sprite {
     private final Vector2 v;
     private Rect worldBounds;
 
-    public Star(TextureAtlas atlas) {
+    public Star(TextureAtlas atlas, float speed) {
         super(atlas.findRegion("star"));
         float x = MathUtils.random(-0.005f, 0.005f);
-        float y = MathUtils.random(-0.2f, -0.1f);
+        float y = MathUtils.random(-0.2f * speed, -0.1f);
         this.v = new Vector2(x, y);
     }
 

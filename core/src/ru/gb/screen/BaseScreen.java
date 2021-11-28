@@ -1,4 +1,4 @@
-package ru.gb.screen.impl;
+package ru.gb.screen;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;

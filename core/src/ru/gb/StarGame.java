@@ -2,7 +2,7 @@ package ru.gb;
 
 import com.badlogic.gdx.Game;
 
-import ru.gb.screen.MenuSreen;
+import ru.gb.screen.impl.MenuSreen;
 
 public class StarGame extends Game {
 
