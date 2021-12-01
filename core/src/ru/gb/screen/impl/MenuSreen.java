@@ -1,4 +1,4 @@
-package ru.gb.screen;
+package ru.gb.screen.impl;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.Texture;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 
 import ru.gb.math.Rect;
-import ru.gb.screen.impl.BaseScreen;
+import ru.gb.screen.BaseScreen;
 import ru.gb.sprite.impl.Background;
 import ru.gb.sprite.impl.ButtonExit;
 import ru.gb.sprite.impl.ButtonPlay;
@@ -39,7 +39,7 @@ public class MenuSreen extends BaseScreen {
         atlas = new TextureAtlas("textures/menuAtlas.tpack");
         stars = new Star [256];
         for (int i = 0; i < stars.length; i++) {
-            stars[i] = new Star(atlas);
+            stars[i] = new Star(atlas, 1f);
         }
         btnExit = new ButtonExit(atlas);
         btnPlay = new ButtonPlay(atlas, game);
