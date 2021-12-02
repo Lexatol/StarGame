@@ -11,6 +11,11 @@ public class Sprite extends Rect {
     protected float scale = 1f; // скалярная вечилина
     protected TextureRegion [] regions; // набор текстур
     protected int frame; // кадр
+    private boolean destroyed; //показывает учавствует в игре спрайт или нет
+
+    public Sprite() {
+
+    }
 
     public Sprite(TextureRegion region) {
         regions = new TextureRegion[1];
@@ -56,6 +61,18 @@ public class Sprite extends Rect {
     public boolean touchDragged(Vector2 touch, int pointer) {
         System.out.println("touchDragged touchX = " + touch.x + " touchY = " + touch.y);
         return false;
+    }
+
+    public void destroy() {
+        this.destroyed = true;
+    }
+
+    public void flushDestroy() {
+        this.destroyed = false;
+    }
+
+    public boolean isDestroyed() {
+        return destroyed;
     }
 
 
