@@ -1,7 +1,8 @@
 package ru.gb.sprite.impl;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -34,8 +35,13 @@ public class Ship extends Sprite {
 
     private int leftPointer = INVALID_POINTER;
     private int rightPointer = INVALID_POINTER;
+    private final float TIME_SINCE_COLLISION = 0.5f;
+    private float timeSinceCollision = 0;
 
     private Rect worldBounds;
+
+    private long id;
+    private Sound sound = Gdx.audio.newSound(Gdx.files.internal("sounds/bullet.wav"));
 
     public Ship(TextureAtlas atlas, BulletPool bulletPool) {
         super(new TextureRegion(atlas.findRegion("main_ship"), 0, 0, 195, 287));
@@ -70,6 +76,11 @@ public class Ship extends Sprite {
         if (getRight() < worldBounds.getLeft()) {
             setLeft(worldBounds.getRight());
         }
+        timeSinceCollision += delta;
+        if (timeSinceCollision >= TIME_SINCE_COLLISION) {
+            timeSinceCollision -= TIME_SINCE_COLLISION;
+            shoot();
+        }
     }
 
     @Override
@@ -91,7 +102,7 @@ public class Ship extends Sprite {
     }
 
     public boolean touchUp(Vector2 touch, int pointer, int button) {
-        if( pointer == leftPointer) {
+        if (pointer == leftPointer) {
             leftPointer = INVALID_POINTER;
             if (rightPointer != INVALID_POINTER) {
                 moveRight();
@@ -100,7 +111,7 @@ public class Ship extends Sprite {
             }
         } else if (pointer == rightPointer) {
             rightPointer = INVALID_POINTER;
-            if (leftPointer !=INVALID_POINTER) {
+            if (leftPointer != INVALID_POINTER) {
                 moveLeft();
             } else {
                 stop();
@@ -122,7 +133,7 @@ public class Ship extends Sprite {
                 pressedRight = true;
                 moveRight();
                 break;
-            case Input.Keys.UP:
+            case Input.Keys.SPACE:
                 shoot();
                 break;
         }
@@ -166,6 +177,8 @@ public class Ship extends Sprite {
 
     private void shoot() {
         Bullet bullet = bulletPool.obtain();
-        bullet.set(this, bulletRegion, pos, bulletV , bulletHeight, worldBounds, demage);
+        bullet.set(this, bulletRegion, pos, bulletV, bulletHeight, worldBounds, demage);
+        id = sound.play(1f);
+
     }
 }
