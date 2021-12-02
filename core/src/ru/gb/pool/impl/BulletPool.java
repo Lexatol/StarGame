@@ -5,10 +5,11 @@ import ru.gb.sprite.impl.Bullet;
 
 public class BulletPool extends SpritesPool<Bullet> {
 
+
+
     @Override
     protected Bullet newObject() {
         return new Bullet();
+
     }
-
-
 }
