@@ -9,6 +9,7 @@ import ru.gb.pool.impl.BulletPool;
 import ru.gb.sprite.Ship;
 
 public class EnemyShip extends Ship {
+    private Vector2 nV;
 
     public EnemyShip(BulletPool bulletPool, Sound bulletSound, Rect worldBounds) {
         this.bulletPool = bulletPool;
@@ -16,6 +17,7 @@ public class EnemyShip extends Ship {
         this.v = new Vector2();
         this.v0 = new Vector2();
         this.worldBounds = worldBounds;
+        this.nV = new Vector2(0, -0.2f);
     }
 
     @Override
@@ -23,6 +25,12 @@ public class EnemyShip extends Ship {
         super.update(delta);
         if (getBottom() < worldBounds.getBottom()) {
             destroy();
+        }
+        if (getTop() > worldBounds.getTop()) {
+            v.set(nV);
+            reloadTimer = reloadInterval * 0.8f;
+        } else {
+            v.set(v0);
         }
     }
 
@@ -38,7 +46,7 @@ public class EnemyShip extends Ship {
             int hp
     ) {
         this.regions = regions;
-        this.v.set(v);
+        this.v0.set(v);
         this.bulletRegion = bulletRegion;
         this.bulletHeight = bulletHeight;
         this.bulletV = bulletV;
