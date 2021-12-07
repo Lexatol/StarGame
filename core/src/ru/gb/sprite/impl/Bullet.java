@@ -11,7 +11,7 @@ public class Bullet extends Sprite {
     private final Vector2 v = new Vector2();
 
     private Rect worldBounds;
-    private int demage;
+    private int damage;
     private Sprite owner;
 
 
@@ -34,11 +34,11 @@ public class Bullet extends Sprite {
         this.v.set(v);
         setHeightProportion(height);
         this.worldBounds = worldBounds;
-        this.demage = demage;
+        this.damage = damage;
     }
 
-    public int getDemage() {
-        return demage;
+    public int getDamage() {
+        return damage;
     }
 
     public Sprite getOwner() {
