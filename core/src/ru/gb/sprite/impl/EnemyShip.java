@@ -24,13 +24,10 @@ public class EnemyShip extends Ship {
         if (getBottom() < worldBounds.getBottom()) {
             destroy();
         }
-        if (getTop() < worldBounds.getTop()) {
-
-        }
     }
 
     public void set(
-            TextureRegion [] regions,
+            TextureRegion[] regions,
             Vector2 v,
             TextureRegion bulletRegion,
             float bulletHeight,

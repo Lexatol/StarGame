@@ -36,13 +36,13 @@ public class EnemyEmitter {
     private final EnemyPool enemyPool;
 
     private final Vector2 enemySmallBulletV = new Vector2(0, -0.3f);
-    private final Vector2 enemySmallV = new Vector2(0, -0.2f);
+    private Vector2 enemySmallV = new Vector2(0, -0.2f);
 
     private final Vector2 enemyMediumBulletV = new Vector2(0, -0.3f);
-    private final Vector2 enemyMediumV = new Vector2(0, -0.03f);
+    private Vector2 enemyMediumV = new Vector2(0, -0.03f);
 
     private final Vector2 enemyBigBulletV = new Vector2(0, -0.3f);
-    private final Vector2 enemyBigV = new Vector2(0, -0.005f);
+    private Vector2 enemyBigV = new Vector2(0, -0.005f);
 
     private final TextureRegion[] enemySmallRegions;
     private final TextureRegion[] enemyMediumRegions;
@@ -106,8 +106,9 @@ public class EnemyEmitter {
             enemyShip.pos.x = MathUtils.random(
                     worldBounds.getLeft() + enemyShip.getHalfWidth(),
                     worldBounds.getRight() - enemyShip.getHalfWidth());
-
         }
+
+
     }
 
 }
