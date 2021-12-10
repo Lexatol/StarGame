@@ -13,7 +13,7 @@ import ru.gb.sprite.Ship;
 
 public class MainShip extends Ship {
 
-
+    private static final int HP = 10;
     private static final float MARGIN = 0.03f;
     private static final int INVALID_POINTER = -1;
     private static final float RELOAD_INTERVAL = 0.2f;
@@ -37,7 +37,18 @@ public class MainShip extends Ship {
         this.damage = 1;
         this.reloadInterval = RELOAD_INTERVAL;
         this.bulletSound = bulletSound;
-        this.hp = 100;
+        this.hp = HP;
+    }
+
+    public void startGame() {
+        hp = HP;
+        flushDestroy();
+        stop();
+        pressedLeft = false;
+        pressedRight = false;
+        leftPointer = INVALID_POINTER;
+        rightPointer = INVALID_POINTER;
+        pos.x = worldBounds.pos.x;
     }
 
     @Override
@@ -62,7 +73,6 @@ public class MainShip extends Ship {
         if (getRight() < worldBounds.getLeft()) {
             setLeft(worldBounds.getRight());
         }
-
     }
 
     @Override
@@ -140,7 +150,6 @@ public class MainShip extends Ship {
                 } else
                     stop();
                 break;
-
         }
         return false;
     }

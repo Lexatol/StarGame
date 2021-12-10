@@ -1,7 +1,6 @@
 package ru.gb.sprite.impl;
 
 import com.badlogic.gdx.Game;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 
 import ru.gb.math.Rect;
@@ -13,7 +12,7 @@ public class ButtonPlay extends BaseButton {
     private static final float HEIGHT = 0.20f;
     private static final float MARGIN = 0.03f;
 
-    private final Game game;
+    protected Game game;
 
     public ButtonPlay(TextureAtlas atlas, Game game) {
         super(atlas.findRegion("btPlay"));

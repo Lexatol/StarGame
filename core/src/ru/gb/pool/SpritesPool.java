@@ -15,7 +15,7 @@ public abstract class SpritesPool<T extends Sprite> {
 
     public T obtain() {
         T object;
-        if(freeObjects.isEmpty()) {
+        if (freeObjects.isEmpty()) {
             object = newObject();
         } else {
             object = freeObjects.remove(freeObjects.size() - 1);
@@ -33,7 +33,7 @@ public abstract class SpritesPool<T extends Sprite> {
         }
     }
 
-    public void drawActiveSprites(SpriteBatch batch)  {
+    public void drawActiveSprites(SpriteBatch batch) {
         for (T item : activeObjects) {
             if (!item.isDestroyed()) {
                 item.draw(batch);
@@ -66,5 +66,10 @@ public abstract class SpritesPool<T extends Sprite> {
     public void dispose() {
         activeObjects.clear();
         freeObjects.clear();
+    }
+
+    public void freeAllActiveSprites() {
+        freeObjects.addAll(activeObjects);
+        activeObjects.clear();
     }
 }
